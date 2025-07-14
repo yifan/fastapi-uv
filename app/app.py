@@ -1,7 +1,7 @@
 import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from .log_filters import EndpointFilter
+from app.log_filters import EndpointFilter
 
 excluded_endpoints = ["/healthz", "/metrics"]
 
