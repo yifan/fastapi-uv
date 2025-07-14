@@ -10,7 +10,7 @@ test:
 	uv run pytest
 
 dev:
-	uv run uvicorn app:app --reload --host=0.0.0.0 --port=8080 
+	uv run uvicorn app.app:app --reload --host=0.0.0.0 --port=8000
 
 build:
 	docker buildx build --platform linux/amd64 -t fastapi-app .
