@@ -10,10 +10,15 @@ test:
 	uv run pytest
 
 dev:
-	uv run uvicorn app.app:app --reload --host=0.0.0.0 --port=8000
+	uv run uvicorn app.app:app \
+	  --reload \
+	  --reload-dir app \
+	  --reload-include "*.yaml" \
+	  ----host=0.0.0.0 \
+	  --port=8000
 
 build:
-	docker buildx build --platform linux/amd64 -t fastapi-app .
+	git archive --format=tar HEAD | docker build --platform linux/amd64 -t fastapi-app -f Dockerfile -
 
 requirements.txt:
-	uv export --no-hashes --group prod -o requirements.txt
+	uv export --no-dev --no-hashes --group prod -o requirements.txt
