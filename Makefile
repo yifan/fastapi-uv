@@ -1,3 +1,5 @@
+APP=fastapi-app
+
 .PHONY: test requirements.txt
 init:
 	@echo "✅ Installing pre-commit hooks..."
@@ -18,7 +20,7 @@ dev:
 	  --port=8000
 
 build:
-	git archive --format=tar HEAD | docker build --platform linux/amd64 -t fastapi-app -f Dockerfile -
+	git archive --format=tar HEAD | docker build --platform linux/amd64 -t $(APP) -f Dockerfile -
 
 requirements.txt:
 	uv export --no-dev --no-hashes --group prod -o requirements.txt
